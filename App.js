@@ -39,29 +39,29 @@ export default class App extends Component<{}> {
   _setCurrentSpeed = () =>{
     switch(this.state.speed){
       case 0:
-        this.setState({toStringSpeed: 'up 3'});
+        this.setState({toStringSpeed: '30'});
         break;
       case 1:
-        this.setState({toStringSpeed: 'up 2'});
+        this.setState({toStringSpeed: '20'});
         break;
       case 2:
-        this.setState({toStringSpeed: 'up 1'});
+        this.setState({toStringSpeed: '10'});
         break;
       case 3:
         this.setState({toStringSpeed: '0'})
         break;
       case 4:
-        this.setState({toStringSpeed: 'down 1'})
+        this.setState({toStringSpeed: '10'})
         break;
       case 5:
-        this.setState({toStringSpeed: 'down 2'})
+        this.setState({toStringSpeed: '20'})
         break;
       case 6:
-        this.setState({toStringSpeed: 'down 3'})
+        this.setState({toStringSpeed: '30'})
         break;
     };
-  };
 
+  };
 
   // event onSlidingComplete for direction control
   _isDirectionStart = () => {
@@ -72,21 +72,22 @@ export default class App extends Component<{}> {
   _setCurrentDirection = () =>{
     switch(this.state.direction){
       case 0:
-        this.setState({toStringDirection: 'left 2'});
+        this.setState({toStringDirection: '20'});
         break;
       case 1:
-        this.setState({toStringDirection: 'left 1'});
+        this.setState({toStringDirection: '10'});
         break;
       case 2:
         this.setState({toStringDirection: '0'});
         break;
       case 3:
-        this.setState({toStringDirection: 'right 1'})
+        this.setState({toStringDirection: '10'})
         break;
       case 4:
-        this.setState({toStringDirection: 'right 2'})
+        this.setState({toStringDirection: '20'})
         break;
     };
+
   };
 
   render() {
@@ -94,7 +95,6 @@ export default class App extends Component<{}> {
       <View style={globalStyles.container}>
 
         <View style={globalStyles.row1}>
-
           <View style={globalStyles.row1col1}>
             <View style={globalStyles.signalView}>
               <Icon
@@ -124,6 +124,24 @@ export default class App extends Component<{}> {
                   <Text style= {{color: '#ffffff', fontSize: 18, fontFamily: 'digital'}}>SPEED</Text>
                 </View>
                 <View style={globalStyles.title}>
+                  { this.state.speed === 3 ? null :
+                  <View style={globalStyles.titleAbsolute}>
+                    {this.state.speed  < 3 ?
+                      <Icon
+                        name='arrow-up'
+                        type='font-awesome'
+                        color='red'
+                        size={15}
+                      /> :
+                      <Icon
+                        name='arrow-down'
+                        type='font-awesome'
+                        color='red'
+                        size={15}
+                      />
+                    }
+                  </View>
+                  }
                   <Text style= {{color: '#ffffff',fontSize: 20, fontFamily: 'digital'}}>{this.state.toStringSpeed}</Text>
                 </View>
               </View>
@@ -132,6 +150,24 @@ export default class App extends Component<{}> {
                   <Text style= {{color: '#ffffff', fontSize: 17, fontFamily: 'digital'}}>DIRECTION</Text>
                 </View>
                 <View style={globalStyles.title}>
+                { this.state.direction === 2 ? null :
+                <View style={globalStyles.titleAbsolute}>
+                  {this.state.direction  < 2 ?
+                    <Icon
+                      name='arrow-left'
+                      type='font-awesome'
+                      color='red'
+                      size={15}
+                    /> :
+                    <Icon
+                      name='arrow-right'
+                      type='font-awesome'
+                      color='red'
+                      size={15}
+                    />
+                  }
+                </View>
+                }
                   <Text style= {{color: '#ffffff', fontSize: 20, fontFamily: 'digital'}}>{this.state.toStringDirection}</Text>
                 </View>
               </View>
@@ -218,13 +254,13 @@ export default class App extends Component<{}> {
                 maximumValue={6}
                 step={1}
                 style={globalStyles.styleControl}
-                minimumTrackTintColor='#b3b3b3'
+                minimumTrackTintColor='#262626'
                 // orientation='horizontal'
                 orientation= 'vertical'
                 thumbTintColor='black'
                 animateTransitions={true}
                 thumbStyle= {globalStyles.thumbStyle}
-                trackStyle={{width: 200}}
+                trackStyle={{width: 200, backgroundColor: '#262626'}}
                 onSlidingStart={this._isSpeedStart}
                 onSlidingComplete={this._setCurrentSpeed}
                 value={this.state.speed}
@@ -244,13 +280,13 @@ export default class App extends Component<{}> {
                 maximumValue={4}
                 step={1}
                 style={globalStyles.styleControl}
-                minimumTrackTintColor='#b3b3b3'
+                minimumTrackTintColor='#262626'
                 // orientation='horizontal'
                 // orientation= 'vertical'
                 thumbTintColor='black'
                 animateTransitions={true}
                 thumbStyle= {globalStyles.thumbStyle}
-                trackStyle={{width: 200}}
+                trackStyle={{width: 200, backgroundColor: '#262626'}}
                 onSlidingStart={this._isDirectionStart}
                 onSlidingComplete={this._setCurrentDirection}
                 value={this.state.direction}

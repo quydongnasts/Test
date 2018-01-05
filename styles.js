@@ -59,6 +59,13 @@ const globalStyles = StyleSheet.create({
     borderColor: '#ffffff',
     alignItems: 'center',
   },
+  titleAbsolute: {
+    position: 'absolute',
+    width: 20,
+    height: 25,
+    top: 10,
+    right: 2,
+  },
   row2: {
     flex: 4,
     flexDirection: 'row',
@@ -104,7 +111,7 @@ const globalStyles = StyleSheet.create({
     borderTopLeftRadius: 100,
     borderTopRightRadius: 100,
     borderBottomRightRadius: 100,
-    backgroundColor: 'white'
+    backgroundColor: '#b30000'
   },
   styleControl: {
     borderBottomLeftRadius: 100,
