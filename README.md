@@ -1,4 +1,4 @@
-# App DashBoard
+# App DashBoard (-v 1.0)
 
 # Package used
 1. react-native-orientation: https://github.com/yamill/react-native-orientation
