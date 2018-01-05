@@ -4,12 +4,14 @@ import {
   StyleSheet,
   Text,
   View,
-  Alert
+  Alert,
+  Image
 } from 'react-native';
 
 import globalStyles from './styles';
 import Orientation from 'react-native-orientation';
 import { Slider, Icon  } from 'react-native-elements';
+import { MKSwitch } from 'react-native-material-kit';
 
 export default class App extends Component<{}> {
   constructor(props) {
@@ -37,25 +39,25 @@ export default class App extends Component<{}> {
   _setCurrentSpeed = () =>{
     switch(this.state.speed){
       case 0:
-        this.setState({toStringSpeed: 'up to 3'});
+        this.setState({toStringSpeed: 'up 3'});
         break;
       case 1:
-        this.setState({toStringSpeed: 'up to 2'});
+        this.setState({toStringSpeed: 'up 2'});
         break;
       case 2:
-        this.setState({toStringSpeed: 'up to 1'});
+        this.setState({toStringSpeed: 'up 1'});
         break;
       case 3:
         this.setState({toStringSpeed: '0'})
         break;
       case 4:
-        this.setState({toStringSpeed: 'down to 1'})
+        this.setState({toStringSpeed: 'down 1'})
         break;
       case 5:
-        this.setState({toStringSpeed: 'down to 2'})
+        this.setState({toStringSpeed: 'down 2'})
         break;
       case 6:
-        this.setState({toStringSpeed: 'down to 3'})
+        this.setState({toStringSpeed: 'down 3'})
         break;
     };
   };
@@ -94,16 +96,110 @@ export default class App extends Component<{}> {
         <View style={globalStyles.row1}>
 
           <View style={globalStyles.row1col1}>
-            <View style={globalStyles.signalIcon}>
-              <Text> 1/1 </Text>
+            <View style={globalStyles.signalView}>
+              <Icon
+                  name='power-off'
+                  type='font-awesome'
+                  color='#ffffff'
+                  onPress={() => alert('signal')}
+              />
             </View>
-            <View style={globalStyles.signalButton}>
-              <Text> 1/2 </Text>
+            <View style={globalStyles.signalView}>
+              <MKSwitch style={{}}
+                  trackSize={15}
+                  trackLength={35}
+                  onColor="green"
+                  thumbOnColor='green'
+                  rippleColor="rgba(255,152,0,.2)"
+                  onPress={() => console.log('orange switch pressed')}
+                  onCheckedChange={(e) => console.log('orange switch checked', e)}
+              />
             </View>
           </View>
 
           <View style={globalStyles.row1col2}>
-            <Text> row1col2 </Text>
+            <View style={globalStyles.infromationView}>
+              <View style={globalStyles.informationDetail}>
+                <View style={globalStyles.title}>
+                  <Text style= {{color: '#ffffff', fontSize: 18, fontFamily: 'digital'}}>SPEED</Text>
+                </View>
+                <View style={globalStyles.title}>
+                  <Text style= {{color: '#ffffff',fontSize: 20, fontFamily: 'digital'}}>{this.state.toStringSpeed}</Text>
+                </View>
+              </View>
+              <View style={globalStyles.informationDetail}>
+                <View style={globalStyles.title}>
+                  <Text style= {{color: '#ffffff', fontSize: 17, fontFamily: 'digital'}}>DIRECTION</Text>
+                </View>
+                <View style={globalStyles.title}>
+                  <Text style= {{color: '#ffffff', fontSize: 20, fontFamily: 'digital'}}>{this.state.toStringDirection}</Text>
+                </View>
+              </View>
+            </View>
+            <View style={globalStyles.entertaiment}>
+              <View style={globalStyles.entertaimentView}>
+                <Icon
+                  name='video-camera'
+                  type='font-awesome'
+                  color='#ffffff'
+                  onPress={() => alert('signal')}
+                />
+              </View>
+              <View style={globalStyles.entertaimentView}>
+                <MKSwitch style={{}}
+                    trackSize={15}
+                    trackLength={35}
+                    onColor="green"
+                    thumbOnColor='green'
+                    rippleColor="rgba(255,152,0,.2)"
+                    onPress={() => console.log('orange switch pressed')}
+                    onCheckedChange={(e) => console.log('orange switch checked', e)}
+                />
+              </View>
+            </View>
+            <View style={globalStyles.entertaiment}>
+              <View style={globalStyles.entertaimentView}>
+                <Icon
+                  name='lightbulb'
+                  type='foundation'
+                  color='#ffffff'
+                  onPress={() => alert('signal')}
+                />
+              </View>
+              <View style={globalStyles.entertaimentView}>
+                <MKSwitch style={{}}
+                    trackSize={15}
+                    trackLength={35}
+                    onColor="green"
+                    thumbOnColor='green'
+                    rippleColor="rgba(255,152,0,.2)"
+                    onPress={() => console.log('orange switch pressed')}
+                    onCheckedChange={(e) => console.log('orange switch checked', e)}
+                />
+              </View>
+            </View>
+            <View style={globalStyles.entertaiment}>
+              <View style={globalStyles.entertaimentView}>
+                <Icon
+                  name='volume-down'
+                  type='font-awesome'
+                  color='#ffffff'
+                  onPress={() => alert('signal')}
+                />
+              </View>
+              <View style={globalStyles.entertaimentView}>
+                <MKSwitch style={{}}
+                    trackSize={15}
+                    trackLength={35}
+                    onColor="green"
+                    thumbOnColor='green'
+                    rippleColor="rgba(255,152,0,.2)"
+                    onPress={() => console.log('orange switch pressed')}
+                    onCheckedChange={(e) => console.log('orange switch checked', e)}
+                />
+              </View>
+            </View>
+
           </View>
 
         </View>
@@ -112,9 +208,11 @@ export default class App extends Component<{}> {
 
           <View style={globalStyles.row2col1}>
             <View style={globalStyles.viewInfo}>
-              <Text>Current Speed: {this.state.toStringSpeed}</Text>
+
             </View>
+
             <View style={globalStyles.viewControl}>
+              <View style={globalStyles.viewControlAbsolute} />
               <Slider
                 minimumValue={0}
                 maximumValue={6}
@@ -136,10 +234,11 @@ export default class App extends Component<{}> {
           </View>
 
           <View style={globalStyles.row2col2}>
-            <View style={[globalStyles.viewInfo, {backgroundColor: 'yellow'}]}>
-              <Text>Turn Left / Turn Right: {this.state.toStringDirection}</Text>
+            <View style={globalStyles.viewInfo}>
+
             </View>
-            <View style={[globalStyles.viewControl, {backgroundColor: 'gray'}]}>
+            <View style={globalStyles.viewControl}>
+              <View style={globalStyles.viewControlAbsolute} />
               <Slider
                 minimumValue={0}
                 maximumValue={4}
