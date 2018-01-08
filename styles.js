@@ -80,17 +80,33 @@ const globalStyles = StyleSheet.create({
   },
   viewInfo: {
     flex: 1,
-    justifyContent: 'center', //Doc
-    alignItems: 'center', // Ngang
+    // justifyContent: 'center',
+    // alignItems: 'center',
     backgroundColor: 'gray',
-    borderBottomWidth: 1,
+    borderBottomWidth: 2,
     borderBottomColor: '#ffffff',
+    paddingRight: 8,
+    flexDirection: 'row',
+    justifyContent: 'flex-end'
+  },
+  energyInfo: {
+    height: null,
+    minWidth: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   viewControl: {
     flex: 9,
     justifyContent: 'center', //Doc
     alignItems: 'center', // Ngang
     backgroundColor: '#007399',
+  },
+  viewControlRight: {
+    flex: 9,
+    // justifyContent: 'center', //Doc
+    // alignItems: 'center', // Ngang
+    backgroundColor: '#007399',
+    flexDirection: 'row',
   },
   viewControlAbsolute: {
     backgroundColor: '#004d66',
@@ -103,6 +119,24 @@ const globalStyles = StyleSheet.create({
     borderTopLeftRadius: 200,
     borderTopRightRadius: 200,
     borderBottomRightRadius: 200,
+  },
+  viewButtonTop: {
+    justifyContent: 'flex-end',
+    flex: 4
+  },
+  viewButtonBottom: {
+    justifyContent: 'flex-start',
+    flex: 4
+  },
+  viewButtonLeft: {
+    alignItems: 'flex-end',
+    flex: 4,
+    justifyContent: 'center', //Doc
+  },
+  viewButtonRight: {
+    alignItems: 'flex-start',
+    flex: 4,
+    justifyContent: 'center', //Doc
   },
   thumbStyle: {
     height: 35,
