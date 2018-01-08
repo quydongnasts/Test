@@ -5,9 +5,7 @@ import {
   Text,
   View,
   Alert,
-  Image,
-  Vibration,
-  TouchableHighlight
+  Image
 } from 'react-native';
 
 import globalStyles from './styles';
@@ -19,7 +17,6 @@ export default class App extends Component<{}> {
   constructor(props) {
     super(props)
     this.state = {
-      signal: false,
       speed: 3,
       toStringSpeed: '0',
       direction: 2,
@@ -31,6 +28,7 @@ export default class App extends Component<{}> {
     // Lock screen Landscape
     Orientation.lockToLandscape();
   };
+
 
   // event onSlidingComplete for speed control
   _isSpeedStart = () => {
@@ -67,6 +65,7 @@ export default class App extends Component<{}> {
 
   // event onSlidingComplete for direction control
   _isDirectionStart = () => {
+
   };
 
   // event onSlidingComplete for direction control
@@ -91,15 +90,6 @@ export default class App extends Component<{}> {
 
   };
 
-  // check connect with a car
-  // _checkConnectCar = (isCheck) =>{
-  //   if( isCheck.checked ){
-  //     this.setState({signal: true})
-  //   }else {
-  //     this.setState({signal: false})
-  //   }
-  // };
-
   render() {
     return (
       <View style={globalStyles.container}>
@@ -111,6 +101,7 @@ export default class App extends Component<{}> {
                   name='power-off'
                   type='font-awesome'
                   color='#ffffff'
+                  onPress={() => alert('signal')}
               />
             </View>
             <View style={globalStyles.signalView}>
@@ -120,7 +111,8 @@ export default class App extends Component<{}> {
                   onColor="green"
                   thumbOnColor='green'
                   rippleColor="rgba(255,152,0,.2)"
-                  onPress={() => {Vibration.vibrate(200)}}
+                  onPress={() => console.log('orange switch pressed')}
+                  onCheckedChange={(e) => console.log('orange switch checked', e)}
               />
             </View>
           </View>
@@ -129,7 +121,7 @@ export default class App extends Component<{}> {
             <View style={globalStyles.infromationView}>
               <View style={globalStyles.informationDetail}>
                 <View style={globalStyles.title}>
-                  <Text style= {{color: '#ffffff', fontSize: 15, fontFamily: 'digital'}}>SPEED</Text>
+                  <Text style= {{color: '#ffffff', fontSize: 18, fontFamily: 'digital'}}>SPEED</Text>
                 </View>
                 <View style={globalStyles.title}>
                   { this.state.speed === 3 ? null :
@@ -155,7 +147,7 @@ export default class App extends Component<{}> {
               </View>
               <View style={globalStyles.informationDetail}>
                 <View style={globalStyles.title}>
-                  <Text style= {{color: '#ffffff', fontSize: 15, fontFamily: 'digital'}}>DIRECTION</Text>
+                  <Text style= {{color: '#ffffff', fontSize: 17, fontFamily: 'digital'}}>DIRECTION</Text>
                 </View>
                 <View style={globalStyles.title}>
                 { this.state.direction === 2 ? null :
@@ -186,6 +178,7 @@ export default class App extends Component<{}> {
                   name='video-camera'
                   type='font-awesome'
                   color='#ffffff'
+                  onPress={() => alert('signal')}
                 />
               </View>
               <View style={globalStyles.entertaimentView}>
@@ -195,7 +188,7 @@ export default class App extends Component<{}> {
                     onColor="green"
                     thumbOnColor='green'
                     rippleColor="rgba(255,152,0,.2)"
-                    onPress={() => {Vibration.vibrate(200)}}
+                    onPress={() => console.log('orange switch pressed')}
                     onCheckedChange={(e) => console.log('orange switch checked', e)}
                 />
               </View>
@@ -206,6 +199,7 @@ export default class App extends Component<{}> {
                   name='lightbulb'
                   type='foundation'
                   color='#ffffff'
+                  onPress={() => alert('signal')}
                 />
               </View>
               <View style={globalStyles.entertaimentView}>
@@ -215,7 +209,7 @@ export default class App extends Component<{}> {
                     onColor="green"
                     thumbOnColor='green'
                     rippleColor="rgba(255,152,0,.2)"
-                    onPress={() => {Vibration.vibrate(200)}}
+                    onPress={() => console.log('orange switch pressed')}
                     onCheckedChange={(e) => console.log('orange switch checked', e)}
                 />
               </View>
@@ -226,6 +220,7 @@ export default class App extends Component<{}> {
                   name='volume-down'
                   type='font-awesome'
                   color='#ffffff'
+                  onPress={() => alert('signal')}
                 />
               </View>
               <View style={globalStyles.entertaimentView}>
@@ -235,7 +230,7 @@ export default class App extends Component<{}> {
                     onColor="green"
                     thumbOnColor='green'
                     rippleColor="rgba(255,152,0,.2)"
-                    onPress={() => {Vibration.vibrate(200)}}
+                    onPress={() => console.log('orange switch pressed')}
                     onCheckedChange={(e) => console.log('orange switch checked', e)}
                 />
               </View>
@@ -249,75 +244,54 @@ export default class App extends Component<{}> {
 
           <View style={globalStyles.row2col1}>
             <View style={globalStyles.viewInfo}>
+
             </View>
 
             <View style={globalStyles.viewControl}>
               <View style={globalStyles.viewControlAbsolute} />
-                <View style={globalStyles.viewButtonTop}>
-                  <Icon
-                    name='sort-up'
-                    type='font-awesome'
-                    color='#ffffff'
-                    size={220}
-                    iconStyle={{height: 100}}
-                    onPress={() => {Vibration.vibrate(200)}}
-                    underlayColor='transparent'
-                  />
-                </View>
-              <View style={{flex: 0.5}} />
-                <View style={globalStyles.viewButtonBottom}>
-                  <Icon
-                    name='sort-down'
-                    type='font-awesome'
-                    color='#ffffff'
-                    size={220}
-                    iconStyle={{paddingBottom: 380}}
-                    onPress={()=>{alert("down")}}
-                    underlayColor='transparent'
-                  />
-                </View>
+              <Slider
+                minimumValue={0}
+                maximumValue={6}
+                step={1}
+                style={globalStyles.styleControl}
+                minimumTrackTintColor='#262626'
+                // orientation='horizontal'
+                orientation= 'vertical'
+                thumbTintColor='black'
+                animateTransitions={true}
+                thumbStyle= {globalStyles.thumbStyle}
+                trackStyle={{width: 200, backgroundColor: '#262626'}}
+                onSlidingStart={this._isSpeedStart}
+                onSlidingComplete={this._setCurrentSpeed}
+                value={this.state.speed}
+                onValueChange={(speed) => this.setState({speed})}
+              />
             </View>
           </View>
 
           <View style={globalStyles.row2col2}>
             <View style={globalStyles.viewInfo}>
-              <View style={globalStyles.energyInfo}>
-                <Text style={{fontSize: 18, fontFamily: 'digital', color: 'white'}}>100 %</Text>
-              </View>
-              <View style={globalStyles.energyInfo}>
-                <Icon
-                    name='car'
-                    type='font-awesome'
-                    color='#ffffff'
-                    size={20}
-                />
-              </View>
+
             </View>
-            <View style={globalStyles.viewControlRight}>
+            <View style={globalStyles.viewControl}>
               <View style={globalStyles.viewControlAbsolute} />
-                <View style={globalStyles.viewButtonLeft}>
-                  <Icon
-                    name='caret-left'
-                    type='font-awesome'
-                    color='#ffffff'
-                    size={220}
-                    onPress={()=>{alert("left")}}
-                    underlayColor='transparent'
-                    containerStyle={{height:140}}
-                  />
-                </View>
-                <View style={{flex: 0.5}} />
-                <View style={globalStyles.viewButtonRight}>
-                <Icon
-                  name='caret-right'
-                  type='font-awesome'
-                  color='#ffffff'
-                  size={220}
-                  onPress={()=>{alert("right")}}
-                  underlayColor='transparent'
-                  containerStyle={{height:140}}
-                />
-              </View>
+              <Slider
+                minimumValue={0}
+                maximumValue={4}
+                step={1}
+                style={globalStyles.styleControl}
+                minimumTrackTintColor='#262626'
+                // orientation='horizontal'
+                // orientation= 'vertical'
+                thumbTintColor='black'
+                animateTransitions={true}
+                thumbStyle= {globalStyles.thumbStyle}
+                trackStyle={{width: 200, backgroundColor: '#262626'}}
+                onSlidingStart={this._isDirectionStart}
+                onSlidingComplete={this._setCurrentDirection}
+                value={this.state.direction}
+                onValueChange={(direction) => this.setState({direction})}
+              />
             </View>
           </View>
 
