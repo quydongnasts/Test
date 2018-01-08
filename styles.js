@@ -21,7 +21,7 @@ const globalStyles = StyleSheet.create({
     borderRightWidth: 1,
     borderRightColor: '#ffffff',
   },
-  signalView:{
+  signalView: {
     flex: 1,
     justifyContent: 'center',
   },
@@ -157,4 +157,4 @@ const globalStyles = StyleSheet.create({
 });
 
 /** export module */
-module.exports = globalStyles
+module.exports = globalStyles;

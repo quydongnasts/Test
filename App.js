@@ -1,104 +1,33 @@
+/*global
+alert, confirm, console, Debug, opera, prompt, WSH
+*/
 import React, { Component } from 'react';
 import {
-  Platform,
-  StyleSheet,
   Text,
   View,
-  Alert,
-  Image,
   Vibration,
-  TouchableHighlight
 } from 'react-native';
 
-import globalStyles from './styles';
 import Orientation from 'react-native-orientation';
-import { Slider, Icon  } from 'react-native-elements';
+import { Icon } from 'react-native-elements';
 import { MKSwitch } from 'react-native-material-kit';
+
+import globalStyles from './styles';
+
 
 export default class App extends Component<{}> {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      signal: false,
       speed: 3,
-      toStringSpeed: '0',
       direction: 2,
-      toStringDirection: '0'
-    }
+    };
   }
 
   componentDidMount() {
     // Lock screen Landscape
     Orientation.lockToLandscape();
-  };
-
-  // event onSlidingComplete for speed control
-  _isSpeedStart = () => {
-
-  };
-
-  // event onSlidingComplete for speed control
-  _setCurrentSpeed = () =>{
-    switch(this.state.speed){
-      case 0:
-        this.setState({toStringSpeed: '30'});
-        break;
-      case 1:
-        this.setState({toStringSpeed: '20'});
-        break;
-      case 2:
-        this.setState({toStringSpeed: '10'});
-        break;
-      case 3:
-        this.setState({toStringSpeed: '0'})
-        break;
-      case 4:
-        this.setState({toStringSpeed: '10'})
-        break;
-      case 5:
-        this.setState({toStringSpeed: '20'})
-        break;
-      case 6:
-        this.setState({toStringSpeed: '30'})
-        break;
-    };
-
-  };
-
-  // event onSlidingComplete for direction control
-  _isDirectionStart = () => {
-  };
-
-  // event onSlidingComplete for direction control
-  _setCurrentDirection = () =>{
-    switch(this.state.direction){
-      case 0:
-        this.setState({toStringDirection: '20'});
-        break;
-      case 1:
-        this.setState({toStringDirection: '10'});
-        break;
-      case 2:
-        this.setState({toStringDirection: '0'});
-        break;
-      case 3:
-        this.setState({toStringDirection: '10'})
-        break;
-      case 4:
-        this.setState({toStringDirection: '20'})
-        break;
-    };
-
-  };
-
-  // check connect with a car
-  // _checkConnectCar = (isCheck) =>{
-  //   if( isCheck.checked ){
-  //     this.setState({signal: true})
-  //   }else {
-  //     this.setState({signal: false})
-  //   }
-  // };
+  }
 
   render() {
     return (
@@ -114,13 +43,14 @@ export default class App extends Component<{}> {
               />
             </View>
             <View style={globalStyles.signalView}>
-              <MKSwitch style={{}}
+              <MKSwitch
+                  style={{}}
                   trackSize={15}
                   trackLength={35}
                   onColor="green"
                   thumbOnColor='green'
                   rippleColor="rgba(255,152,0,.2)"
-                  onPress={() => {Vibration.vibrate(200)}}
+                  onPress={() => { Vibration.vibrate(200); }}
               />
             </View>
           </View>
@@ -129,12 +59,14 @@ export default class App extends Component<{}> {
             <View style={globalStyles.infromationView}>
               <View style={globalStyles.informationDetail}>
                 <View style={globalStyles.title}>
-                  <Text style= {{color: '#ffffff', fontSize: 15, fontFamily: 'digital'}}>SPEED</Text>
+                  <Text style={{ color: '#ffffff', fontSize: 15, fontFamily: 'digital' }}>
+                    SPEED
+                  </Text>
                 </View>
                 <View style={globalStyles.title}>
                   { this.state.speed === 3 ? null :
                   <View style={globalStyles.titleAbsolute}>
-                    {this.state.speed  < 3 ?
+                    {this.state.speed < 3 ?
                       <Icon
                         name='arrow-up'
                         type='font-awesome'
@@ -150,17 +82,21 @@ export default class App extends Component<{}> {
                     }
                   </View>
                   }
-                  <Text style= {{color: '#ffffff',fontSize: 20, fontFamily: 'digital'}}>{this.state.toStringSpeed}</Text>
+                  <Text style={{ color: '#ffffff', fontSize: 20, fontFamily: 'digital' }}>
+                    {this.state.speed}
+                  </Text>
                 </View>
               </View>
               <View style={globalStyles.informationDetail}>
                 <View style={globalStyles.title}>
-                  <Text style= {{color: '#ffffff', fontSize: 15, fontFamily: 'digital'}}>DIRECTION</Text>
+                  <Text style={{ color: '#ffffff', fontSize: 15, fontFamily: 'digital' }}>
+                    DIRECTION
+                  </Text>
                 </View>
                 <View style={globalStyles.title}>
                 { this.state.direction === 2 ? null :
                 <View style={globalStyles.titleAbsolute}>
-                  {this.state.direction  < 2 ?
+                  {this.state.direction < 2 ?
                     <Icon
                       name='arrow-left'
                       type='font-awesome'
@@ -176,7 +112,9 @@ export default class App extends Component<{}> {
                   }
                 </View>
                 }
-                  <Text style= {{color: '#ffffff', fontSize: 20, fontFamily: 'digital'}}>{this.state.toStringDirection}</Text>
+                  <Text style={{ color: '#ffffff', fontSize: 20, fontFamily: 'digital' }}>
+                    {this.state.direction}
+                  </Text>
                 </View>
               </View>
             </View>
@@ -189,13 +127,14 @@ export default class App extends Component<{}> {
                 />
               </View>
               <View style={globalStyles.entertaimentView}>
-                <MKSwitch style={{}}
+                <MKSwitch
+                    style={{}}
                     trackSize={15}
                     trackLength={35}
                     onColor="green"
                     thumbOnColor='green'
                     rippleColor="rgba(255,152,0,.2)"
-                    onPress={() => {Vibration.vibrate(200)}}
+                    onPress={() => { Vibration.vibrate(200); }}
                     onCheckedChange={(e) => console.log('orange switch checked', e)}
                 />
               </View>
@@ -209,13 +148,14 @@ export default class App extends Component<{}> {
                 />
               </View>
               <View style={globalStyles.entertaimentView}>
-                <MKSwitch style={{}}
+                <MKSwitch
+                    style={{}}
                     trackSize={15}
                     trackLength={35}
                     onColor="green"
                     thumbOnColor='green'
                     rippleColor="rgba(255,152,0,.2)"
-                    onPress={() => {Vibration.vibrate(200)}}
+                    onPress={() => { Vibration.vibrate(200); }}
                     onCheckedChange={(e) => console.log('orange switch checked', e)}
                 />
               </View>
@@ -229,13 +169,14 @@ export default class App extends Component<{}> {
                 />
               </View>
               <View style={globalStyles.entertaimentView}>
-                <MKSwitch style={{}}
+                <MKSwitch
+                    style={{}}
                     trackSize={15}
                     trackLength={35}
                     onColor="green"
                     thumbOnColor='green'
                     rippleColor="rgba(255,152,0,.2)"
-                    onPress={() => {Vibration.vibrate(200)}}
+                    onPress={() => { Vibration.vibrate(200); }}
                     onCheckedChange={(e) => console.log('orange switch checked', e)}
                 />
               </View>
@@ -249,8 +190,8 @@ export default class App extends Component<{}> {
 
           <View style={globalStyles.row2col1}>
             <View style={globalStyles.viewInfo}>
+               {/* aaaaaaa */}
             </View>
-
             <View style={globalStyles.viewControl}>
               <View style={globalStyles.viewControlAbsolute} />
                 <View style={globalStyles.viewButtonTop}>
@@ -259,20 +200,20 @@ export default class App extends Component<{}> {
                     type='font-awesome'
                     color='#ffffff'
                     size={220}
-                    iconStyle={{height: 100}}
-                    onPress={() => {Vibration.vibrate(200)}}
+                    iconStyle={{ height: 100 }}
+                    onPress={() => { Vibration.vibrate(200); }}
                     underlayColor='transparent'
                   />
                 </View>
-              <View style={{flex: 0.5}} />
+              <View style={{ flex: 0.5 }} />
                 <View style={globalStyles.viewButtonBottom}>
                   <Icon
                     name='sort-down'
                     type='font-awesome'
                     color='#ffffff'
                     size={220}
-                    iconStyle={{paddingBottom: 380}}
-                    onPress={()=>{alert("down")}}
+                    iconStyle={{ paddingBottom: 380 }}
+                    onPress={() => { alert('down'); }}
                     underlayColor='transparent'
                   />
                 </View>
@@ -282,7 +223,7 @@ export default class App extends Component<{}> {
           <View style={globalStyles.row2col2}>
             <View style={globalStyles.viewInfo}>
               <View style={globalStyles.energyInfo}>
-                <Text style={{fontSize: 18, fontFamily: 'digital', color: 'white'}}>100 %</Text>
+                <Text style={{ fontSize: 18, fontFamily: 'digital', color: 'white' }}>100 %</Text>
               </View>
               <View style={globalStyles.energyInfo}>
                 <Icon
@@ -301,21 +242,21 @@ export default class App extends Component<{}> {
                     type='font-awesome'
                     color='#ffffff'
                     size={220}
-                    onPress={()=>{alert("left")}}
+                    onPress={() => { alert('left'); }}
                     underlayColor='transparent'
-                    containerStyle={{height:140}}
+                    containerStyle={{ height: 140 }}
                   />
                 </View>
-                <View style={{flex: 0.5}} />
+                <View style={{ flex: 0.5 }} />
                 <View style={globalStyles.viewButtonRight}>
                 <Icon
                   name='caret-right'
                   type='font-awesome'
                   color='#ffffff'
                   size={220}
-                  onPress={()=>{alert("right")}}
+                  onPress={() => { alert('right'); }}
                   underlayColor='transparent'
-                  containerStyle={{height:140}}
+                  containerStyle={{ height: 140 }}
                 />
               </View>
             </View>
